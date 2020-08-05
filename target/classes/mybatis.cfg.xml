@@ -33,6 +33,9 @@
     </environments>
 
     <mappers>
-        <mapper class="com.zking.mapper.bookMapper"/>
+
+        <mapper class="com.zking.mapper.UserMapper"/>
     </mappers>
+
+
 </configuration>

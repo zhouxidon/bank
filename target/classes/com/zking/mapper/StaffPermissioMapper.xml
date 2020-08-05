@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.StaffPermissioMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.StaffPermissio" >
+    <constructor >
+      <idArg column="yh_staff_permissio_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_staff_permissio_id, yh_staff_id, yh_permission_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_staff_permissio
+    where yh_staff_permissio_id = #{yhStaffPermissioId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_staff_permissio
+    where yh_staff_permissio_id = #{yhStaffPermissioId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.StaffPermissio" >
+    insert into yh_staff_permissio (yh_staff_permissio_id, yh_staff_id, yh_permission_id
+      )
+    values (#{yhStaffPermissioId,jdbcType=INTEGER}, #{yhStaffId,jdbcType=INTEGER}, #{yhPermissionId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.StaffPermissio" >
+    insert into yh_staff_permissio
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhStaffPermissioId != null" >
+        yh_staff_permissio_id,
+      </if>
+      <if test="yhStaffId != null" >
+        yh_staff_id,
+      </if>
+      <if test="yhPermissionId != null" >
+        yh_permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhStaffPermissioId != null" >
+        #{yhStaffPermissioId,jdbcType=INTEGER},
+      </if>
+      <if test="yhStaffId != null" >
+        #{yhStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionId != null" >
+        #{yhPermissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.StaffPermissio" >
+    update yh_staff_permissio
+    <set >
+      <if test="yhStaffId != null" >
+        yh_staff_id = #{yhStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionId != null" >
+        yh_permission_id = #{yhPermissionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where yh_staff_permissio_id = #{yhStaffPermissioId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.StaffPermissio" >
+    update yh_staff_permissio
+    set yh_staff_id = #{yhStaffId,jdbcType=INTEGER},
+      yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+    where yh_staff_permissio_id = #{yhStaffPermissioId,jdbcType=INTEGER}
+  </update>
+</mapper>

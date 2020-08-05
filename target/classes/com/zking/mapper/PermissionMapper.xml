@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Permission" >
+    <constructor >
+      <idArg column="yh_permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_permission_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_permission_pid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_permission_permission" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_permission_id, yh_permission_name, yh_permission_pid, yh_permission_permission
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_permission
+    where yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_permission
+    where yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Permission" >
+    insert into yh_permission (yh_permission_id, yh_permission_name, 
+      yh_permission_pid, yh_permission_permission
+      )
+    values (#{yhPermissionId,jdbcType=INTEGER}, #{yhPermissionName,jdbcType=VARCHAR}, 
+      #{yhPermissionPid,jdbcType=INTEGER}, #{yhPermissionPermission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Permission" >
+    insert into yh_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhPermissionId != null" >
+        yh_permission_id,
+      </if>
+      <if test="yhPermissionName != null" >
+        yh_permission_name,
+      </if>
+      <if test="yhPermissionPid != null" >
+        yh_permission_pid,
+      </if>
+      <if test="yhPermissionPermission != null" >
+        yh_permission_permission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhPermissionId != null" >
+        #{yhPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionName != null" >
+        #{yhPermissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhPermissionPid != null" >
+        #{yhPermissionPid,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionPermission != null" >
+        #{yhPermissionPermission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Permission" >
+    update yh_permission
+    <set >
+      <if test="yhPermissionName != null" >
+        yh_permission_name = #{yhPermissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhPermissionPid != null" >
+        yh_permission_pid = #{yhPermissionPid,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionPermission != null" >
+        yh_permission_permission = #{yhPermissionPermission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Permission" >
+    update yh_permission
+    set yh_permission_name = #{yhPermissionName,jdbcType=VARCHAR},
+      yh_permission_pid = #{yhPermissionPid,jdbcType=INTEGER},
+      yh_permission_permission = #{yhPermissionPermission,jdbcType=VARCHAR}
+    where yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+  </update>
+</mapper>

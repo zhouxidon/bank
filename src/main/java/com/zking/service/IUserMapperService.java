@@ -1,11 +1,12 @@
-package com.zking.mapper;
+package com.zking.service;
 
 import com.zking.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
-public interface UserMapper {
+
+
+public interface IUserMapperService {
     int deleteByPrimaryKey(Integer yhUserUid);
 
     int insert(User record);

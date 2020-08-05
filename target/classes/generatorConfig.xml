@@ -63,7 +63,7 @@
         <!-- tableName为对应的数据库表 -->
         <!-- domainObjectName是要生成的实体类 -->
         <!-- enable*ByExample是否生成 example类 -->
-<!--        <table schema="" tableName="t_book_vue" domainObjectName="book"-->
+<!--        <table schema="" tableName="yh_user_role" domainObjectName="UserRole"-->
 <!--               enableCountByExample="false" enableDeleteByExample="false"-->
 <!--               enableSelectByExample="false" enableUpdateByExample="false">-->
 <!--            &lt;!&ndash; 忽略列，不生成bean 字段 &ndash;&gt;-->

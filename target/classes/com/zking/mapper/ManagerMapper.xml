@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.ManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Manager" >
+    <constructor >
+      <idArg column="yh_manager_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_manager_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_manager_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_manager_id, yh_manager_name, yh_manager_pwd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_manager
+    where yh_manager_id = #{yhManagerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_manager
+    where yh_manager_id = #{yhManagerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Manager" >
+    insert into yh_manager (yh_manager_id, yh_manager_name, yh_manager_pwd
+      )
+    values (#{yhManagerId,jdbcType=INTEGER}, #{yhManagerName,jdbcType=VARCHAR}, #{yhManagerPwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Manager" >
+    insert into yh_manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhManagerId != null" >
+        yh_manager_id,
+      </if>
+      <if test="yhManagerName != null" >
+        yh_manager_name,
+      </if>
+      <if test="yhManagerPwd != null" >
+        yh_manager_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhManagerId != null" >
+        #{yhManagerId,jdbcType=INTEGER},
+      </if>
+      <if test="yhManagerName != null" >
+        #{yhManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhManagerPwd != null" >
+        #{yhManagerPwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Manager" >
+    update yh_manager
+    <set >
+      <if test="yhManagerName != null" >
+        yh_manager_name = #{yhManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhManagerPwd != null" >
+        yh_manager_pwd = #{yhManagerPwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yh_manager_id = #{yhManagerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Manager" >
+    update yh_manager
+    set yh_manager_name = #{yhManagerName,jdbcType=VARCHAR},
+      yh_manager_pwd = #{yhManagerPwd,jdbcType=VARCHAR}
+    where yh_manager_id = #{yhManagerId,jdbcType=INTEGER}
+  </update>
+</mapper>

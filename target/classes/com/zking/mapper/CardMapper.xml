@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.CardMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Card" >
+    <constructor >
+      <idArg column="yh_card_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_card_bankCart" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_card_money" jdbcType="REAL" javaType="java.lang.Float" />
+      <arg column="yh_card_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_card_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_card_id, yh_card_bankCart, yh_card_money, yh_card_pwd, yh_card_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_card
+    where yh_card_id = #{yhCardId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_card
+    where yh_card_id = #{yhCardId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Card" >
+    insert into yh_card (yh_card_id, yh_card_bankCart, yh_card_money, 
+      yh_card_pwd, yh_card_status)
+    values (#{yhCardId,jdbcType=INTEGER}, #{yhCardBankcart,jdbcType=VARCHAR}, #{yhCardMoney,jdbcType=REAL}, 
+      #{yhCardPwd,jdbcType=VARCHAR}, #{yhCardStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Card" >
+    insert into yh_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhCardId != null" >
+        yh_card_id,
+      </if>
+      <if test="yhCardBankcart != null" >
+        yh_card_bankCart,
+      </if>
+      <if test="yhCardMoney != null" >
+        yh_card_money,
+      </if>
+      <if test="yhCardPwd != null" >
+        yh_card_pwd,
+      </if>
+      <if test="yhCardStatus != null" >
+        yh_card_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhCardId != null" >
+        #{yhCardId,jdbcType=INTEGER},
+      </if>
+      <if test="yhCardBankcart != null" >
+        #{yhCardBankcart,jdbcType=VARCHAR},
+      </if>
+      <if test="yhCardMoney != null" >
+        #{yhCardMoney,jdbcType=REAL},
+      </if>
+      <if test="yhCardPwd != null" >
+        #{yhCardPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhCardStatus != null" >
+        #{yhCardStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Card" >
+    update yh_card
+    <set >
+      <if test="yhCardBankcart != null" >
+        yh_card_bankCart = #{yhCardBankcart,jdbcType=VARCHAR},
+      </if>
+      <if test="yhCardMoney != null" >
+        yh_card_money = #{yhCardMoney,jdbcType=REAL},
+      </if>
+      <if test="yhCardPwd != null" >
+        yh_card_pwd = #{yhCardPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhCardStatus != null" >
+        yh_card_status = #{yhCardStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where yh_card_id = #{yhCardId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Card" >
+    update yh_card
+    set yh_card_bankCart = #{yhCardBankcart,jdbcType=VARCHAR},
+      yh_card_money = #{yhCardMoney,jdbcType=REAL},
+      yh_card_pwd = #{yhCardPwd,jdbcType=VARCHAR},
+      yh_card_status = #{yhCardStatus,jdbcType=INTEGER}
+    where yh_card_id = #{yhCardId,jdbcType=INTEGER}
+  </update>
+</mapper>
