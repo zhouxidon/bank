@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Staff" >
+    <constructor >
+      <idArg column="yh_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_user_zh" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_staff_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_staff_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_staff_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_staff_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_staff_wage" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_staff_idCard" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_staff_id, yh_user_zh, yh_staff_pwd, yh_staff_sex, yh_staff_address, yh_staff_phone, 
+    yh_staff_wage, yh_staff_idCard
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_staff
+    where yh_staff_id = #{yhStaffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_staff
+    where yh_staff_id = #{yhStaffId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Staff" >
+    insert into yh_staff (yh_staff_id, yh_user_zh, yh_staff_pwd, 
+      yh_staff_sex, yh_staff_address, yh_staff_phone, 
+      yh_staff_wage, yh_staff_idCard)
+    values (#{yhStaffId,jdbcType=INTEGER}, #{yhUserZh,jdbcType=VARCHAR}, #{yhStaffPwd,jdbcType=VARCHAR}, 
+      #{yhStaffSex,jdbcType=VARCHAR}, #{yhStaffAddress,jdbcType=VARCHAR}, #{yhStaffPhone,jdbcType=VARCHAR}, 
+      #{yhStaffWage,jdbcType=INTEGER}, #{yhStaffIdcard,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Staff" >
+    insert into yh_staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhStaffId != null" >
+        yh_staff_id,
+      </if>
+      <if test="yhUserZh != null" >
+        yh_user_zh,
+      </if>
+      <if test="yhStaffPwd != null" >
+        yh_staff_pwd,
+      </if>
+      <if test="yhStaffSex != null" >
+        yh_staff_sex,
+      </if>
+      <if test="yhStaffAddress != null" >
+        yh_staff_address,
+      </if>
+      <if test="yhStaffPhone != null" >
+        yh_staff_phone,
+      </if>
+      <if test="yhStaffWage != null" >
+        yh_staff_wage,
+      </if>
+      <if test="yhStaffIdcard != null" >
+        yh_staff_idCard,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhStaffId != null" >
+        #{yhStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="yhUserZh != null" >
+        #{yhUserZh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffPwd != null" >
+        #{yhStaffPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffSex != null" >
+        #{yhStaffSex,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffAddress != null" >
+        #{yhStaffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffPhone != null" >
+        #{yhStaffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffWage != null" >
+        #{yhStaffWage,jdbcType=INTEGER},
+      </if>
+      <if test="yhStaffIdcard != null" >
+        #{yhStaffIdcard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Staff" >
+    update yh_staff
+    <set >
+      <if test="yhUserZh != null" >
+        yh_user_zh = #{yhUserZh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffPwd != null" >
+        yh_staff_pwd = #{yhStaffPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffSex != null" >
+        yh_staff_sex = #{yhStaffSex,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffAddress != null" >
+        yh_staff_address = #{yhStaffAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffPhone != null" >
+        yh_staff_phone = #{yhStaffPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="yhStaffWage != null" >
+        yh_staff_wage = #{yhStaffWage,jdbcType=INTEGER},
+      </if>
+      <if test="yhStaffIdcard != null" >
+        yh_staff_idCard = #{yhStaffIdcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yh_staff_id = #{yhStaffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Staff" >
+    update yh_staff
+    set yh_user_zh = #{yhUserZh,jdbcType=VARCHAR},
+      yh_staff_pwd = #{yhStaffPwd,jdbcType=VARCHAR},
+      yh_staff_sex = #{yhStaffSex,jdbcType=VARCHAR},
+      yh_staff_address = #{yhStaffAddress,jdbcType=VARCHAR},
+      yh_staff_phone = #{yhStaffPhone,jdbcType=VARCHAR},
+      yh_staff_wage = #{yhStaffWage,jdbcType=INTEGER},
+      yh_staff_idCard = #{yhStaffIdcard,jdbcType=VARCHAR}
+    where yh_staff_id = #{yhStaffId,jdbcType=INTEGER}
+  </update>
+</mapper>

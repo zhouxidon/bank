@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.User" >
+    <constructor >
+      <idArg column="yh_user_uid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_idCard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_pwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_user_zh" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_user_uid, yh_user_name, yh_user_sex, yh_user_address, yh_user_phone, yh_user_idCard, 
+    yh_user_pwd, yh_user_zh
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_user
+    where yh_user_uid = #{yhUserUid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_user
+    where yh_user_uid = #{yhUserUid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.User" >
+    insert into yh_user (yh_user_uid, yh_user_name, yh_user_sex, 
+      yh_user_address, yh_user_phone, yh_user_idCard, 
+      yh_user_pwd, yh_user_zh)
+    values (#{yhUserUid,jdbcType=INTEGER}, #{yhUserName,jdbcType=VARCHAR}, #{yhUserSex,jdbcType=VARCHAR}, 
+      #{yhUserAddress,jdbcType=VARCHAR}, #{yhUserPhone,jdbcType=VARCHAR}, #{yhUserIdcard,jdbcType=VARCHAR}, 
+      #{yhUserPwd,jdbcType=VARCHAR}, #{yhUserZh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.User" >
+    insert into yh_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhUserUid != null" >
+        yh_user_uid,
+      </if>
+      <if test="yhUserName != null" >
+        yh_user_name,
+      </if>
+      <if test="yhUserSex != null" >
+        yh_user_sex,
+      </if>
+      <if test="yhUserAddress != null" >
+        yh_user_address,
+      </if>
+      <if test="yhUserPhone != null" >
+        yh_user_phone,
+      </if>
+      <if test="yhUserIdcard != null" >
+        yh_user_idCard,
+      </if>
+      <if test="yhUserPwd != null" >
+        yh_user_pwd,
+      </if>
+      <if test="yhUserZh != null" >
+        yh_user_zh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhUserUid != null" >
+        #{yhUserUid,jdbcType=INTEGER},
+      </if>
+      <if test="yhUserName != null" >
+        #{yhUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserSex != null" >
+        #{yhUserSex,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserAddress != null" >
+        #{yhUserAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserPhone != null" >
+        #{yhUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserIdcard != null" >
+        #{yhUserIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserPwd != null" >
+        #{yhUserPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserZh != null" >
+        #{yhUserZh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.User" >
+    update yh_user
+    <set >
+      <if test="yhUserName != null" >
+        yh_user_name = #{yhUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserSex != null" >
+        yh_user_sex = #{yhUserSex,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserAddress != null" >
+        yh_user_address = #{yhUserAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserPhone != null" >
+        yh_user_phone = #{yhUserPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserIdcard != null" >
+        yh_user_idCard = #{yhUserIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserPwd != null" >
+        yh_user_pwd = #{yhUserPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhUserZh != null" >
+        yh_user_zh = #{yhUserZh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yh_user_uid = #{yhUserUid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.User" >
+    update yh_user
+    set yh_user_name = #{yhUserName,jdbcType=VARCHAR},
+      yh_user_sex = #{yhUserSex,jdbcType=VARCHAR},
+      yh_user_address = #{yhUserAddress,jdbcType=VARCHAR},
+      yh_user_phone = #{yhUserPhone,jdbcType=VARCHAR},
+      yh_user_idCard = #{yhUserIdcard,jdbcType=VARCHAR},
+      yh_user_pwd = #{yhUserPwd,jdbcType=VARCHAR},
+      yh_user_zh = #{yhUserZh,jdbcType=VARCHAR}
+    where yh_user_uid = #{yhUserUid,jdbcType=INTEGER}
+  </update>
+</mapper>

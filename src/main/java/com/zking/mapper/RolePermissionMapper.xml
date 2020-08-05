@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.RolePermission" >
+    <constructor >
+      <idArg column="yh_role_permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_permission_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_role_permission_id, yh_role_id, yh_permission_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_role_permission
+    where yh_role_permission_id = #{yhRolePermissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_role_permission
+    where yh_role_permission_id = #{yhRolePermissionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.RolePermission" >
+    insert into yh_role_permission (yh_role_permission_id, yh_role_id, yh_permission_id
+      )
+    values (#{yhRolePermissionId,jdbcType=INTEGER}, #{yhRoleId,jdbcType=INTEGER}, #{yhPermissionId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.RolePermission" >
+    insert into yh_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhRolePermissionId != null" >
+        yh_role_permission_id,
+      </if>
+      <if test="yhRoleId != null" >
+        yh_role_id,
+      </if>
+      <if test="yhPermissionId != null" >
+        yh_permission_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhRolePermissionId != null" >
+        #{yhRolePermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="yhRoleId != null" >
+        #{yhRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionId != null" >
+        #{yhPermissionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.RolePermission" >
+    update yh_role_permission
+    <set >
+      <if test="yhRoleId != null" >
+        yh_role_id = #{yhRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="yhPermissionId != null" >
+        yh_permission_id = #{yhPermissionId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where yh_role_permission_id = #{yhRolePermissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.RolePermission" >
+    update yh_role_permission
+    set yh_role_id = #{yhRoleId,jdbcType=INTEGER},
+      yh_permission_id = #{yhPermissionId,jdbcType=INTEGER}
+    where yh_role_permission_id = #{yhRolePermissionId,jdbcType=INTEGER}
+  </update>
+</mapper>

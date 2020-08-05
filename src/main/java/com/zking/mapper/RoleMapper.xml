@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.model.Role" >
+    <constructor >
+      <idArg column="yh_role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="yh_role_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="yh_role_description" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    yh_role_id, yh_role_name, yh_role_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from yh_role
+    where yh_role_id = #{yhRoleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from yh_role
+    where yh_role_id = #{yhRoleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.model.Role" >
+    insert into yh_role (yh_role_id, yh_role_name, yh_role_description
+      )
+    values (#{yhRoleId,jdbcType=INTEGER}, #{yhRoleName,jdbcType=VARCHAR}, #{yhRoleDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.model.Role" >
+    insert into yh_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhRoleId != null" >
+        yh_role_id,
+      </if>
+      <if test="yhRoleName != null" >
+        yh_role_name,
+      </if>
+      <if test="yhRoleDescription != null" >
+        yh_role_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhRoleId != null" >
+        #{yhRoleId,jdbcType=INTEGER},
+      </if>
+      <if test="yhRoleName != null" >
+        #{yhRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhRoleDescription != null" >
+        #{yhRoleDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.model.Role" >
+    update yh_role
+    <set >
+      <if test="yhRoleName != null" >
+        yh_role_name = #{yhRoleName,jdbcType=VARCHAR},
+      </if>
+      <if test="yhRoleDescription != null" >
+        yh_role_description = #{yhRoleDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where yh_role_id = #{yhRoleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.model.Role" >
+    update yh_role
+    set yh_role_name = #{yhRoleName,jdbcType=VARCHAR},
+      yh_role_description = #{yhRoleDescription,jdbcType=VARCHAR}
+    where yh_role_id = #{yhRoleId,jdbcType=INTEGER}
+  </update>
+</mapper>
